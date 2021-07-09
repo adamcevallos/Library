@@ -10,12 +10,6 @@ body {
                          "container side"
 }
 
-.blur {
-    filter: blur(3px);
-    pointer-events: none;
-    cursor: default;
-}
-
 #top-bar {
     overflow: auto;
     position: relative;
@@ -58,6 +52,27 @@ h1 {
     display: grid;
 }
 
+#side {
+    grid-area: side;
+    background-color:rgb(59, 57, 57);
+    padding-left: 1em;
+}
+
+#stats {
+    font-size: 1.25em;
+    position: absolute; 
+}
+
+#stats > p {
+    color: white;
+}
+
+.blur {
+    filter: blur(3px);
+    pointer-events: none;
+    cursor: default;
+}
+
 .card {
     overflow: hidden;
     line-height: 1em;
@@ -85,21 +100,6 @@ h1 {
 .card > button:hover {
     transform: scale(1.1);
     transition-duration: 0.1s;
-}
-
-#side {
-    grid-area: side;
-    background-color:rgb(59, 57, 57);
-    padding-left: 1em;
-}
-
-#stats {
-    font-size: 1.25em;
-    position: absolute; 
-}
-
-#stats > p {
-    color: white;
 }
 
 /* Experiment */

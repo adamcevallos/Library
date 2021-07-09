@@ -1,4 +1,4 @@
-// let myLibrary = [];
+let myLibrary = [];
 
 function openAddForm() {
     document.getElementById("add-form").style.display = "block";
@@ -11,19 +11,31 @@ function closeAddForm() {
         (element => element.classList.toggle('blur'));
 }
 
-// function Book(title, author, numPages, isRead) {
-//     this.title = title;
-//     this.author = author;
-//     this.numPages = numPages;   
-//     this.isRead = isRead;
-// }
+function Book(title, author, numPages, isRead) {
+    this.title = title;
+    this.author = author;
+    this.numPages = numPages;   
+    this.isRead = isRead;
+}
 
-// Book.prototype.info = function() {
-//     let readString = (this.isRead) ? 'Has been read.' : 'Has not been read yet.';
-//     return `${this.title} by ${this.author}, ${this.numPages} pages. ${readString}`;
-// }
+function addBook(title, author, numPages, isRead) {
+    let newBook = new Book(title, author, numPages, isRead);
+    myLibrary.push(newBook);
+}
 
-// const got = new Book('Game of Thrones mothertrucker', 'George R.R Martin', 694, false);
-// myLibrary.push(got);
+Book.prototype.info = function() {
+    let readString = (this.isRead) ? 'Has been read.' : 'Has not been read yet.';
+    return `${this.title} by ${this.author}, ${this.numPages} pages. ${readString}`;
+}
 
-// console.log(myLibrary);
+const form = document.getElementById('add-form');
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let title = document.getElementById('add-title').value;
+    let author = document.getElementById('add-author').value;
+    let numPages = document.getElementById('add-pages').value;
+    let isRead = document.getElementById('add-completed').value;
+    addBook(title, author, numPages, isRead);
+    closeAddForm();
+});
+
