@@ -4,15 +4,60 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="styles.css">
+        <title>Library</title>
     </head>
 
     <body>
-        <div id="top">
+
+        <div id="top-bar">
             <h1>Library</h1>
             <button id="signIn" type="submit">Sign in</button>
         </div>
-        <div id="side"></div>
-        <div id="got" class="card"></div>
+
+        <div id="side">
+            <div id="stats">
+                <p>Number of Books: </p>
+                <p id="num-books">0</p>
+                <p>Total pages</p>
+                <p id="total-pages">0</p>
+            </div>
+            
+        </div>
+
+        <div id="container">
+            <div class ="card" id="testcard">
+                <button style="background-color: gray;">Edit</button>
+                <button style="background-color: red;">Delete</button>
+                <p style="color: white;">The Trigger: Hunting the Assassin Who Brought the World to War</p>
+                <p style="color: rgb(214, 213, 154);">Tim Butcher</p>
+                <button>Read</button>
+            </div>
+        </div>
+
+        <div class="form-popup" id="add-form">
+            <form action="#" class="form-container">
+
+                <label for="title"><b>Title</b></label> <br>
+                <input type="text" placeholder="Title" name="title" required>
+
+                <label for="author"><b>Author</b></label>
+                <input type="text" placeholder="Author" name="author" required>
+
+                <label for="num-pages"><b>Number of Pages</b></label>
+                <input type="number" placeholder="Pages" name="num-pages" required>
+
+                <label for="is-read"><b>Completed</b></label>
+                <input type="checkbox" name="is-read"> 
+                <br>
+
+                <button type="submit" class="form-btn">Submit</button>
+                <button type="reset" class="form-btn cancel" onclick="closeAddForm()">
+                    Close
+                </button>
+            </form>
+        </div>
+        
+        <button class="add-button" type="button" onclick="openAddForm()"></button>
 
         <script src="library.js"></script>
     </body>
