@@ -1,10 +1,11 @@
 body {
     margin: 0;
     display: grid;
-    height: 100vh;
+    min-height: 48em;
+    height: 100%;
     width: 100%;
 
-    grid-template-rows: 0.5fr 4fr;
+    grid-template-rows: 5em 1fr;
     grid-template-columns: 1fr 15em;
     grid-template-areas: "top-bar top-bar"
                          "container side"
@@ -42,14 +43,20 @@ h1 {
     position: absolute;
     color: white;
     left: 50%;
-    transform: translateX(-110%);
+    transform: translateX(-170%);
 }
 
 #container {
-    padding: 1em;
+    position: relative;
     grid-area: container;
-    background-image: linear-gradient(90deg, blue, aqua);
+    padding: 3em;
+    background-image: linear-gradient(90deg, #ad5389, #3c1053);
     display: grid;
+    grid-template-columns: repeat(3, 20em);
+    grid-template-rows: repeat(auto-fill, 13.5em);
+    column-gap: 3em;
+    row-gap: 3em;
+    
 }
 
 #side {
@@ -74,51 +81,144 @@ h1 {
 }
 
 .card {
+    padding: 1em;
+    position: relative; /* for children */
+    font-family: ('Bebas Neue', cursive);
     overflow: hidden;
-    line-height: 1em;
+    line-height: 1.2em;
     text-align: center;
     border: 3px solid rgb(0, 0, 0);
-    font-size: 1.1em;
-    background-image: linear-gradient(180deg, red, purple);
+    background-image: linear-gradient(90deg, #0F2027, #203A43, #2C5364);
     height: 12em;
     width: 17em;
     border-radius: 6px;
     box-shadow: 0 0 5px black;
 }
 
-.card > p {color: rgb(218, 218, 218);}
-
-.card > button {
-    cursor: pointer;
-    background-color: rgb(77, 185, 26);
-    height: 1.7em;
-    width: 4em;
-    border-radius: 6px;
-    border: 1px solid black;
-    margin: 0 0.6em;
+.card > p {
+    color: rgb(218, 218, 218);
+    font-size: 1.4em;
 }
+
+.card > .deleteBtn {
+    margin: 0.2em 0.25em 0 0;
+    background-color: transparent;
+    font-size: 1.5em;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    height: 0.1em;
+    width: 0.9em;
+    padding: 0 1px 25px 0;
+    border: none;
+}
+
 .card > button:hover {
     transform: scale(1.1);
     transition-duration: 0.1s;
 }
 
-/* Experiment */
+.card > label {
+    display: block;
+    color: white;
+}
+
+#readPara {
+    font-size: 1em;
+}
+
+.card-read > label{color:rgb(126, 126, 126);}
+
+.card-read {
+    -webkit-transition: all 0.5s ease-in-out;
+    background: #1488CC;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2B32B2, #1488CC);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2B32B2, #1488CC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.card-read > p {color: black;}
+
+/* the switch - box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    margin: 0 auto;
+    width: 3.5em;
+    height: 1.75em;
+}
+
+/* hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    border-radius: 2em;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.slider:before {
+    border-radius: 50%;
+    position: absolute;
+    content: "";
+    height: 1.35em;
+    width: 1.4em;
+    left: 0.25em;
+    bottom: 0.235em;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #14b858;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #14b858;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(1.6em);
+    -ms-transform: translateX(1.6em);
+    transform: translateX(1.6em);
+}
+
 .add-button {
-    background-color: rgb(89, 202, 89);
-    position: fixed;
+    background-color: #2980B9;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9);  /* Chrome 10-25, Safari 5.1-6 */
+    background-image: linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    box-shadow: 0 0 8px black;
+
+    position: absolute;
+    bottom: 1.5em;
+    right: 2em;
     border: 1px solid black;
     width: 3em;
     height: 3em;
     border-radius: 30px;
-    bottom: 1em;
-    right: 20em;
+    outline: none;
     background-image: url('plus.png');
-    background-size: 39px;
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
 
     animation-name: reverse-animation;
     animation-duration: 0.5s;
-    animation-fill-mode: forwards;
-}
+    -o-animation-iteration-count: 0;
+    animation-fill-mode:forwards}
 
 .add-button:hover {
     animation-name: plus-animation;
@@ -143,7 +243,6 @@ h1 {
     }
 }
 
-
 /* form popup - hidden by default */
 .form-popup {
     display: none;
@@ -167,7 +266,7 @@ h1 {
 
 /* Full-width input fields */
 .form-container input[type="text"], .form-container input[type="number"] {
-    width: 80%;
+    width: 90%;
     padding: 1em;
     margin: 0.35em 0 1.4em 0;
     border: none;

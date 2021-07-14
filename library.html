@@ -5,10 +5,10 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="styles.css">
         <title>Library</title>
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     </head>
 
     <body>
-
         <div id="top-bar">
             <h1>Library</h1>
             <button id="signIn" type="submit">Sign in</button>
@@ -18,20 +18,16 @@
             <div id="stats">
                 <p>Number of Books: </p>
                 <p id="num-books">0</p>
+                <p>Completed Books</p>
+                <p id="num-completed">0</p>
                 <p>Total pages</p>
-                <p id="total-pages">0</p>
+                <p id="num-pages">0</p>
             </div>
             
         </div>
 
         <div id="container">
-            <!-- <div class ="card" id="testcard">
-                <button style="background-color: gray;">Edit</button>
-                <button style="background-color: red;">Delete</button>
-                <p style="color: white;">The Trigger: Hunting the Assassin Who Brought the World to War</p>
-                <p style="color: rgb(214, 213, 154);">Tim Butcher</p>
-                <button>Read</button>
-            </div> -->
+            <button class="add-button" type="button" id="add-button"></button>
         </div>
 
         <div class="form-popup" id="add-form">
@@ -44,21 +40,21 @@
                 <input type="text" placeholder="Author" name="author" id="add-author" required>
 
                 <label for="num-pages"><b>Number of Pages</b></label>
-                <input type="number" placeholder="Pages" name="num-pages" id="add-pages" required>
+                <input type="number" placeholder="Pages" name="num-pages" id="add-pages" 
+                    min="0" max="10000" required>
 
                 <label for="is-read"><b>Completed</b></label>
                 <input type="checkbox" name="is-read" id="add-completed"> 
                 <br>
 
                 <button type="submit" class="form-btn" id="add-submit">Submit</button>
-                <button type="reset" class="form-btn cancel" id="add-close" onclick="closeAddForm()">
+                <button type="button" class="form-btn cancel" id="add-close">
                     Close
                 </button>
             </form>
+            
         </div>
         
-        <button class="add-button" type="button" onclick="openAddForm()"></button>
-
         <script src="library.js"></script>
     </body>
 </html>
