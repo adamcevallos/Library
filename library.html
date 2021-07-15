@@ -11,7 +11,7 @@
     <body>
         <div id="top-bar">
             <h1>Library</h1>
-            <button id="signIn" type="submit">Sign in</button>
+            <!-- <button id="signIn" type="submit">Sign in</button> -->
         </div>
 
         <div id="side">
@@ -34,10 +34,14 @@
             <form action="#" class="form-container">
 
                 <label for="title"><b>Title</b></label> <br>
-                <input type="text" placeholder="Title" name="title" id="add-title" required>
+                <input pattern="^[a-zA-Z0-9_'()?.,:; ]*$" oninvalid="setCustomValidity('Invalid characters')" 
+                onchange="this.setCustomValidity('')" type="text" 
+                placeholder="Title" name="title" id="add-title" required>
 
                 <label for="author"><b>Author</b></label>
-                <input type="text" placeholder="Author" name="author" id="add-author" required>
+                <input pattern="^[a-zA-Z0-9_'()?.,:; ]*$" oninvalid="setCustomValidity('Invalid characters')" 
+                onchange="this.setCustomValidity('')" type="text" 
+                placeholder="Author" name="author" id="add-author" required>
 
                 <label for="num-pages"><b>Number of Pages</b></label>
                 <input type="number" placeholder="Pages" name="num-pages" id="add-pages" 

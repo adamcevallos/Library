@@ -1,5 +1,27 @@
 let myLibrary = [];
 
+function saveLibraryToStorage() {
+    console.log('saving storage...');
+    window.localStorage.clear();
+
+    for (let i = 0; i < myLibrary.length; i++) {
+        let book = myLibrary[i];
+        let value = `${book.title}/${book.author}/${book.numPages}/${book.isRead}`;
+        window.localStorage.setItem(i, value);
+    }
+}
+
+function retrieveLibraryFromStorage() {
+    let myStorage = window.localStorage;
+    for (let i = 0; i < myStorage.length; i++) {
+        let data = myStorage[i].split('/');
+        let book = new Book(data[0],data[1],data[2],data[3]);
+        console.log(`isread is ${data[3]}`);
+        addBookToContainer(book);
+        myLibrary.push(book);
+    }
+}
+
 function Book(title, author, numPages, isRead) {
     this.title = title;
     this.author = author;
@@ -68,7 +90,8 @@ function addBookToContainer(book) {
     card.setAttribute('id', `Book${myLibrary.length}`);
     card.setAttribute('data-read', String(book.isRead));
 
-    if (book.isRead) {
+    console.log(book.isRead);
+    if (book.isRead == 'true' || book.isRead == true) {
         card.classList.toggle('card-read'); 
         readCheckbox.checked = true;
     }
@@ -92,6 +115,7 @@ function deleteBook(book) {
     });
     
     updateStats();
+    saveLibraryToStorage();
 }
 
 function changeReadStatus(book) {
@@ -104,8 +128,15 @@ function changeReadStatus(book) {
         book.setAttribute('data-read','true');
     }
     book.classList.toggle('card-read');
-    myLibrary[bookIndex].isRead = !myLibrary[bookIndex].isRead;
+    
+    isRead = myLibrary[bookIndex].isRead;
+    if (isRead == 'true') {
+        myLibrary[bookIndex].isRead = 'false';
+    } else {
+        myLibrary[bookIndex].isRead = 'true';
+    }
 
+    saveLibraryToStorage();
     updateStats();
 }
 
@@ -141,6 +172,7 @@ form.addEventListener('submit', (event) => {
     addBookToContainer(book);
     myLibrary.push(book);
     updateStats();
+    saveLibraryToStorage(); 
 });
 
 document.getElementById('add-close').addEventListener('click', closeAddForm);
@@ -162,16 +194,5 @@ document.addEventListener('click', (event) => {
         event.target !== addButton) closeAddForm();
 });
 
-const got = new Book('Game of Thrones', 'George R.R Martin', 694, false);
-const mediations = new Book('Meditations', 'Marcus Aurelius', 191, false);
-const influence = new Book('Influence: Science and Practice', 'Robert B. Cialdani', 260, true);
-addBookToContainer(got);
-myLibrary.push(got);
-
-addBookToContainer(mediations);
-myLibrary.push(mediations);
-
-addBookToContainer(influence);
-myLibrary.push(influence);
-
-// updateStats();
+retrieveLibraryFromStorage();
+updateStats();
