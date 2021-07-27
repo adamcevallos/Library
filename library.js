@@ -1,5 +1,14 @@
 let myLibrary = [];
 
+class Book {
+    constructor(title, author, numPages, isRead) {
+        this.title = title;
+        this.author = author;
+        this.numPages = numPages;
+        this.isRead = isRead;
+    }
+}
+
 function saveLibraryToStorage() {
     console.log('saving storage...');
     window.localStorage.clear();
@@ -20,13 +29,6 @@ function retrieveLibraryFromStorage() {
         addBookToContainer(book);
         myLibrary.push(book);
     }
-}
-
-function Book(title, author, numPages, isRead) {
-    this.title = title;
-    this.author = author;
-    this.numPages = numPages;
-    this.isRead = isRead;
 }
 
 function updateStats() {
